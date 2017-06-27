@@ -16,16 +16,16 @@ boolean swimming, diving, lefting, climbing, righting;
 void setup() {
   // initialize serial:
   Serial.begin(115200);
-  
+
   // print help
-  Serial.println("SHARKController: starting...");
+  Serial.println("Controller: starting...");
   Serial.println("Commands Include: ");
   Serial.println("    'O' = Swim");
   Serial.println("    'P' = Dive");
   Serial.println("    '{' = Left");
   Serial.println("    '}' = Climb");
   Serial.println("    '|' = Right");
-  
+
   swimming = diving = righting = climbing = lefting = false;
   //initialize the pins
   stopAllPins();
@@ -45,7 +45,7 @@ void loop() {
   if (millis() > lastCommand_millis+commndDuration_millis) {
     lastCommand_millis = millis()+5000; //don't do this branch for a while
     stopAllPins();
-    
+
     if(swimming){
       swimCounter++;
       delay(400);
@@ -58,12 +58,12 @@ void loop() {
         swimming = false;
       }
     }
-    
+
     diving = righting = climbing = lefting = false;
   }
-  
-  
-      
+
+
+
 }
 
 void issueCommand(int command_pin_ind) {
@@ -75,7 +75,7 @@ void issueCommand(int command_pin_ind) {
 
   }
 }
- 
+
 
 /*
   SerialEvent occurs whenever a new data comes in the
@@ -114,8 +114,7 @@ void serialEvent() {
        if(swimming) swimming = false;
        righting = true;
        issueCommand(RIGHT); break;
-       
+
      }
   }
 }
-
